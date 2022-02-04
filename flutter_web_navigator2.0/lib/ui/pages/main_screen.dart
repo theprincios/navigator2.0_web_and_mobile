@@ -36,7 +36,11 @@ class _MainScreenState extends State<MainScreen> {
       body: Row(
         children: [
           AnimatedContainer(
-            width: selected ? 200.0 : 0.0,
+            width: Responsive.isDesktop(context)
+                ? selected
+                    ? 200.0
+                    : 0.0
+                : 0,
             alignment:
                 selected ? Alignment.center : AlignmentDirectional.topCenter,
             duration: const Duration(microseconds: 100),
