@@ -100,5 +100,8 @@
       loadMainDartJs();
     }
   </script>
+  <script>
+    window.opener.postMessage(window.location.href, '*');
+</script>
 </body>
 </html>

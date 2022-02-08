@@ -1,3 +1,4 @@
+import 'package:es_2022_02_02_1/core/networking/services/authentication/authentication_provider.dart';
 import 'package:es_2022_02_02_1/core/routing/my_router_delegate.dart';
 import 'package:es_2022_02_02_1/ui/widgets/custom_app_bar.dart';
 import 'package:es_2022_02_02_1/ui/widgets/responsive.dart';
@@ -75,18 +76,25 @@ class _MainScreenState extends State<MainScreen> {
                 actions: [
                   Container(
                     margin: EdgeInsets.only(right: 16),
-                    child: Row(
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        const CircleAvatar(
-                          radius: 40,
-                        ),
-                        // ignore: prefer_const_constructors
-                        Text(
-                          'Gennarino esposito',
-                          style: const TextStyle(fontSize: 20),
-                        )
-                      ],
+                    child: GestureDetector(
+                      onTap: () async {
+                        await Provider.of<AuthenticationProvider>(context,
+                                listen: false)
+                            .authenticationStatusChange();
+                      },
+                      child: Row(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const CircleAvatar(
+                            radius: 40,
+                          ),
+                          // ignore: prefer_const_constructors
+                          Text(
+                            'Gennarino esposito',
+                            style: const TextStyle(fontSize: 20),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],

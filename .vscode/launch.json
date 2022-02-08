@@ -1,0 +1,23 @@
+{
+    // Usare IntelliSense per informazioni sui possibili attributi.
+    // Al passaggio del mouse vengono visualizzate le descrizioni degli attributi esistenti.
+    // Per altre informazioni, visitare: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "flutter_web_navigator2.0",
+            "request": "launch",
+            "type": "dart",
+            "args": [ "--web-port=8080", "--web-hostname=localhost", "--no-sound-null-safety"]
+        },
+        {
+            "name": "flutter_web_navigator2.0 (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--release"
+            ]
+        }
+    ]
+}
