@@ -1,4 +1,4 @@
-import 'package:es_2022_02_02_1/ui/pages/main_screen.dart';
+import 'package:es_2022_02_02_1/ui/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class DrawerButton extends StatelessWidget {

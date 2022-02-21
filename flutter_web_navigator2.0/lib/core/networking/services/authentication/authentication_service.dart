@@ -12,28 +12,18 @@ class AuthenticationService {
       SharedPreferencesService();
 
   final tokenRequest = AsfAuthTokenRequest(
-      clientId: LoginConfigurations().getClientId,
-      redirectUrl: LoginConfigurations().getRedirectUrl,
-      authorizationEndpoint: LoginConfigurations().getAuthorizationEndpoint,
-      tokenEndpoint: LoginConfigurations().getTokenEndpoint,
-      issuer: LoginConfigurations().getIssuer,
-      scopes: LoginConfigurations().getScopes,
-      discoveryUrl: LoginConfigurations().getDiscoveryUrl,
-      parameter: LoginConfigurations().getParameter);
+    clientId: LoginConfigurations().getClientId,
+    redirectUrl: LoginConfigurations().getRedirectUrl,
+    authorizationEndpoint: LoginConfigurations().getAuthorizationEndpoint,
+    tokenEndpoint: LoginConfigurations().getTokenEndpoint,
+    issuer: LoginConfigurations().getIssuer,
+    scopes: LoginConfigurations().getScopes,
+    discoveryUrl: LoginConfigurations().getDiscoveryUrl,
+    // parameter: LoginConfigurations().getParameter
+  );
 
   Future<Tuple2<bool, String?>> login() async {
     try {
-      // final loginConfiguration = LoginConfigurations();
-      // final tokenRequest = AsfAuthTokenRequest(
-      //     clientId: loginConfiguration.getClientId,
-      //     redirectUrl: loginConfiguration.getRedirectUrl,
-      //     authorizationEndpoint: loginConfiguration.getAuthorizationEndpoint,
-      //     tokenEndpoint: loginConfiguration.getTokenEndpoint,
-      //     issuer: loginConfiguration.getIssuer,
-      //     scopes: loginConfiguration.getScopes,
-      //     discoveryUrl: loginConfiguration.getDiscoveryUrl,
-      //     parameter: loginConfiguration.getParameter);
-
       final requestLogin = await AsfAuthWeb.instance.authenticate(tokenRequest);
 
       if (requestLogin != null &&
@@ -67,17 +57,6 @@ class AuthenticationService {
         throw Exception(
             'Nessun refresh token trovato nel database - secure storage');
       }
-
-      // final loginConfiguration = LoginConfigurations();
-      // final tokenRequest = AsfAuthTokenRequest(
-      //     clientId: loginConfiguration.getClientId,
-      //     redirectUrl: loginConfiguration.getRedirectUrl,
-      //     authorizationEndpoint: loginConfiguration.getAuthorizationEndpoint,
-      //     tokenEndpoint: loginConfiguration.getTokenEndpoint,
-      //     issuer: loginConfiguration.getIssuer,
-      //     scopes: loginConfiguration.getScopes,
-      //     discoveryUrl: loginConfiguration.getDiscoveryUrl,
-      //     parameter: loginConfiguration.getParameter);
 
       final requestRefreshToken =
           await AsfAuthWeb.instance.refresh(refreshToken, tokenRequest);
@@ -116,4 +95,6 @@ class AuthenticationService {
       return false;
     }
   }
+
+  Future<void> saveUser() async {}
 }

@@ -19,6 +19,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
         leading: Responsive.isDesktop(context)
             ? leading ?? Container()
             : DrawerButton(),

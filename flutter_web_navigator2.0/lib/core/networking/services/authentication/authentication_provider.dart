@@ -9,7 +9,7 @@ class AuthenticationProvider extends ChangeNotifier {
   static final AuthenticationProvider authenticationProvider =
       AuthenticationProvider();
 
-  bool _isLogged = false;
+  bool _isLogged = true;
   bool get getIsLogged => _isLogged;
 
   set setAuth(bool isLogged) {
@@ -31,15 +31,13 @@ class AuthenticationProvider extends ChangeNotifier {
 
   set setAccessToken(String? accessToken) => _accessToken = accessToken;
 
-  Future<void> authenticationStatusChange() async =>
-      _isLogged ? await logout() : await login();
-
   Future<void> login() async {
     final loginResponse = await _authService.login();
     if (loginResponse.item1) {
       setAccessToken = loginResponse.item2;
 
       _isLogged = true;
+
       notifyListeners();
     }
   }

@@ -17,7 +17,7 @@ class _AuthConfig {
   String get clientId => dotenv.get("CLIENT_ID", fallback: '');
   String get redirectUrl => dotenv.get('REDIRECT_URL', fallback: '');
   String get issuer => dotenv.get('ISSUER', fallback: '');
-  String get authorityId => dotenv.get('AUTHORITY_ID', fallback: '');
+  // String get authorityId => dotenv.get('AUTHORITY_ID', fallback: '');
   List<String> get scopes {
     final scopesString = dotenv.get('API_SCOPES', fallback: '');
     final scopesList = scopesString.split(',');
