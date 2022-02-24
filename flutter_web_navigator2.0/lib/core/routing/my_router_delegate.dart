@@ -1,8 +1,8 @@
-import 'package:es_2022_02_02_1/api_models/helpDesk_model.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_helpDesk_model.dart';
 import 'package:es_2022_02_02_1/core/networking/services/authentication/authentication_provider.dart';
 import 'package:es_2022_02_02_1/core/routing/pages.dart';
 import 'package:es_2022_02_02_1/ui/screen/authority_selection_screen.dart';
-import 'package:es_2022_02_02_1/ui/screen/helpDesk_screen.dart';
+import 'package:es_2022_02_02_1/ui/screen/helpdesk_screen.dart';
 
 import 'package:es_2022_02_02_1/ui/screen/main_screen.dart';
 import 'package:es_2022_02_02_1/ui/screen/menagement_screen.dart';
@@ -78,7 +78,7 @@ class MyRouterDelegate extends RouterDelegate<PageConfiguration>
       case Pages.slotType:
         return const SlotTypeScreen();
       case Pages.dors:
-        return const HelpDeskScreen();
+        return HelpDeskScreen();
       case Pages.menagement:
         return const MenagementScreen();
       case Pages.authoritySelection:

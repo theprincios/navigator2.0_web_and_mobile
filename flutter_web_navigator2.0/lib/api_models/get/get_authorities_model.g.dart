@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'authorities_model.dart';
+part of 'get_authorities_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

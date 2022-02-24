@@ -5,20 +5,22 @@ class CustomDialogBox extends StatefulWidget {
 
   final String primaryButtonTitle;
   final Function primaryButtonDidTapHandler;
+  BuildContext? contextt;
   Widget? child;
 
   String? secondaryButtonTitle;
   Function? secondaryButtonDidTapHandler;
 
-  CustomDialogBox({
-    Key? key,
-    required this.title,
-    required this.primaryButtonTitle,
-    required this.primaryButtonDidTapHandler,
-    this.secondaryButtonTitle,
-    this.secondaryButtonDidTapHandler,
-    this.child,
-  }) : super(key: key);
+  CustomDialogBox(
+      {Key? key,
+      required this.title,
+      required this.primaryButtonTitle,
+      required this.primaryButtonDidTapHandler,
+      this.secondaryButtonTitle,
+      this.secondaryButtonDidTapHandler,
+      this.child,
+      this.contextt})
+      : super(key: key);
 
   @override
   _CustomDialogBoxState createState() => _CustomDialogBoxState();
@@ -123,7 +125,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pop();
+                        //Navigator.of(context).pop();
                         widget.primaryButtonDidTapHandler();
                       },
                       child: Container(

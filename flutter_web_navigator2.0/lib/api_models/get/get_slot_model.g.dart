@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'slot_model.dart';
+part of 'get_slot_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

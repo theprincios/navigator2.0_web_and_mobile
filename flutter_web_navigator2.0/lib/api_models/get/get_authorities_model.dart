@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'authorities_model.g.dart';
+part 'get_authorities_model.g.dart';
 
 @JsonSerializable()
 class Authority {

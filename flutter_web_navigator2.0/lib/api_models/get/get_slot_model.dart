@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'slot_model.g.dart';
+part 'get_slot_model.g.dart';
 
 @JsonSerializable()
 class SlotModel {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'helpDesk_model.dart';
+part of 'get_helpDesk_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -20,7 +20,7 @@ Map<String, dynamic> _$HelpDeskListToJson(HelpDeskList instance) =>
     };
 
 HelpDesk _$HelpDeskFromJson(Map<String, dynamic> json) => HelpDesk(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       address: json['address'] as String,
     );
@@ -32,12 +32,11 @@ Map<String, dynamic> _$HelpDeskToJson(HelpDesk instance) => <String, dynamic>{
     };
 
 HelpDeskById _$HelpDeskByIdFromJson(Map<String, dynamic> json) => HelpDeskById(
-      id: json['id'] as String,
       address: json['address'] as String,
-      name: json['name'] as String,
-      addressNote: json['addressNote'] as String?,
       addressPoint:
           AddressPoint.fromJson(json['addressPoint'] as Map<String, dynamic>),
+      addressNote: json['addressNote'] as String?,
+      name: json['name'] as String,
       publicTransportNote: json['publicTransportNote'] as String?,
       services: (json['services'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -50,9 +49,8 @@ Map<String, dynamic> _$HelpDeskByIdToJson(HelpDeskById instance) =>
       'addressNote': instance.addressNote,
       'publicTransportNote': instance.publicTransportNote,
       'services': instance.services,
-      'address': instance.address,
-      'id': instance.id,
       'name': instance.name,
+      'address': instance.address,
     };
 
 AddressPoint _$AddressPointFromJson(Map<String, dynamic> json) => AddressPoint(

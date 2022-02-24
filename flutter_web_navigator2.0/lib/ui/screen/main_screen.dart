@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:es_2022_02_02_1/api_models/user.dart';
-import 'package:es_2022_02_02_1/api_models/user_logged.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_user.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_user_logged.dart';
 import 'package:es_2022_02_02_1/core/networking/services/api/api_service.dart';
 import 'package:es_2022_02_02_1/core/networking/services/authentication/authentication_provider.dart';
 import 'package:es_2022_02_02_1/core/routing/my_router_delegate.dart';

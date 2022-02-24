@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'user_logged.g.dart';
+part 'get_user_logged.g.dart';
 
 @JsonSerializable()
 class UserLogged {

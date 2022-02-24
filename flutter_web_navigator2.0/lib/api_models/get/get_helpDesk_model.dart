@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'helpDesk_model.g.dart';
+part 'get_helpDesk_model.g.dart';
 
 @JsonSerializable()
 class HelpDeskList {
@@ -26,7 +26,7 @@ class HelpDesk {
 
   Map<String, dynamic> toJson() => _$HelpDeskToJson(this);
 
-  String id;
+  int id;
   String name;
   String address;
 
@@ -38,34 +38,26 @@ class HelpDesk {
 }
 
 @JsonSerializable()
-class HelpDeskById implements HelpDesk {
+class HelpDeskById {
   static const fromJsonFactory = _$HelpDeskByIdFromJson;
   factory HelpDeskById.fromJson(Map<String, dynamic> json) =>
       _$HelpDeskByIdFromJson(json);
 
   Map<String, dynamic> toJson() => _$HelpDeskByIdToJson(this);
+
   AddressPoint addressPoint;
   String? addressNote;
   String? publicTransportNote;
   List<String>? services;
-
+  String name;
+  String address;
   HelpDeskById(
-      {required this.id,
-      required this.address,
-      required this.name,
-      this.addressNote,
+      {required this.address,
       required this.addressPoint,
+      this.addressNote,
+      required this.name,
       this.publicTransportNote,
       this.services});
-
-  @override
-  String address;
-
-  @override
-  String id;
-
-  @override
-  String name;
 }
 
 @JsonSerializable()

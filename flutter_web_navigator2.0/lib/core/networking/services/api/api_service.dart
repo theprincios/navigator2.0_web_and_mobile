@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:es_2022_02_02_1/api_models/authorities_model.dart';
-import 'package:es_2022_02_02_1/api_models/helpDesk_model.dart';
-import 'package:es_2022_02_02_1/api_models/user_logged.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_authorities_model.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_helpDesk_model.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_user_logged.dart';
 import 'package:es_2022_02_02_1/core/networking/services/authentication/login_configuration.dart';
 
 import 'package:tuple/tuple.dart';
@@ -209,6 +209,22 @@ class ApiService {
       );
     } on DioError catch (e) {
       log('deleteHelpDeskById : ' + e.toString());
+      return null;
+    }
+  }
+
+  Future<dynamic> getAddressAutocomplete(
+      {required String search, Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<dynamic>(
+        "https://api-dev.smartpa.cloud/placename/v1/PlaceName/addresses/numbers/autocomplete?authorityId=$authorityId&addressFullTextSearch=$search&maxItemsToView=200",
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return response.data;
+    } catch (e) {
+      log('ERRORE GET getAutocompleteTest : ' + e.toString());
       return null;
     }
   }

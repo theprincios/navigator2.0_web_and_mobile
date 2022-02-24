@@ -1,4 +1,4 @@
-import 'package:es_2022_02_02_1/api_models/helpDesk_model.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_helpDesk_model.dart';
 import 'package:es_2022_02_02_1/ui/widgets/page_bar.dart';
 import 'package:flutter/material.dart';
 

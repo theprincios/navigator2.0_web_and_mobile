@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'slot_type_model.g.dart';
+part 'get_slot_type_model.g.dart';
 
 @JsonSerializable()
 class SlotTypeModel {
