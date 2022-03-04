@@ -2,8 +2,10 @@ import 'package:es_2022_02_02_1/core/networking/services/api/api_service.dart';
 import 'package:es_2022_02_02_1/core/networking/services/authentication/authentication_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'config/environment/env_manager.dart';
+import 'core/networking/provider/page_refresh.dart';
 import 'core/routing/my_back_button_dispatcher.dart';
 import 'core/routing/my_router_delegate.dart';
 import 'core/routing/my_router_information_parser.dart';
@@ -43,20 +45,31 @@ class MyApp extends StatelessWidget {
           create: (context) => ApiService.create,
           dispose: (context, provider) => provider.dio.close(),
         ),
+        ListenableProvider<PageRefresh>(
+          create: (context) => PageRefresh(),
+          dispose: (context, provider) => provider.dispose(),
+        )
       ],
       child: MaterialApp.router(
         key: UniqueKey(),
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xFF4596C3),
-          secondaryHeaderColor: const Color(0xFF316684),
-          backgroundColor: const Color(0xFFF2F2F2),
-          buttonColor: const Color(0xFF316684),
-        ),
+            primaryColor: const Color(0xFF4596C3),
+            secondaryHeaderColor: const Color(0xFF316684),
+            backgroundColor: const Color(0xFFF2F2F2),
+            buttonColor: const Color(0xFF316684),
+            inputDecorationTheme: InputDecorationTheme(fillColor: Colors.red)),
         debugShowCheckedModeBanner: false,
         routerDelegate: myRouterDelegate,
         routeInformationParser: MyRouteInformationParser(),
         backButtonDispatcher: MyBackButtonDispatcher(),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('it', ''),
+          Locale('en', ''),
+        ],
       ),
     );
   }

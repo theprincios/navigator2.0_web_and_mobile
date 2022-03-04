@@ -12,6 +12,7 @@ class ApiInterceptor extends Interceptor {
       RequestInterceptorHandler handler) async {
     log('REQUEST[${request.method}] => PATH: ${request.path}');
     log('Autority[${request.method}] => PATH: ${request.headers}');
+    print('queryParams${request.queryParameters}');
 
     final String? accessToken =
         await AuthenticationProvider.authenticationProvider.getAccessToken;
@@ -28,7 +29,7 @@ class ApiInterceptor extends Interceptor {
   @override
   FutureOr<dynamic> onResponse(
       Response response, ResponseInterceptorHandler handler) async {
-    log('RESPONSE[${response.statusCode}] => BODY: ${response.data}');
+    print('RESPONSE[${response.statusCode}] => BODY: ${response.data}');
 
     return super.onResponse(response, handler);
   }

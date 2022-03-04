@@ -76,7 +76,7 @@ class MyRouterDelegate extends RouterDelegate<PageConfiguration>
       case Pages.slotManagement:
         return const SlotManagementScreen();
       case Pages.slotType:
-        return const SlotTypeScreen();
+        return SlotTypeScreen();
       case Pages.dors:
         return HelpDeskScreen();
       case Pages.menagement:

@@ -76,3 +76,20 @@ class AddressPoint {
     this.longitude,
   });
 }
+
+@JsonSerializable()
+class HelpDeskListShort {
+  static const fromJsonFactory = _$HelpDeskListShortFromJson;
+  factory HelpDeskListShort.fromJson(Map<String, dynamic> json) =>
+      _$HelpDeskListShortFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HelpDeskListShortToJson(this);
+
+  int id;
+  String? name;
+
+  HelpDeskListShort({
+    required this.id,
+    this.name,
+  });
+}

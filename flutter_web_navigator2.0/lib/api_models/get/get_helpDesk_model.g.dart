@@ -63,3 +63,15 @@ Map<String, dynamic> _$AddressPointToJson(AddressPoint instance) =>
       'latitude': instance.latitude,
       'longitude': instance.longitude,
     };
+
+HelpDeskListShort _$HelpDeskListShortFromJson(Map<String, dynamic> json) =>
+    HelpDeskListShort(
+      id: json['id'] as int,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$HelpDeskListShortToJson(HelpDeskListShort instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

@@ -9,19 +9,24 @@ class NotLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(
-          child: CardXL(
-            subtitle: 'Effettua il login per accedere al servizio',
-            buttomText: 'Login',
-            buttonDidTapHandler: () async {
-              await Provider.of<AuthenticationProvider>(context, listen: false)
-                  .login();
-            },
-          ),
-        )
-      ],
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: CardXL(
+              subtitle: 'Effettua il login per accedere al servizio',
+              buttomText: 'Login',
+              buttonDidTapHandler: () async {
+                await Provider.of<AuthenticationProvider>(context,
+                        listen: false)
+                    .login();
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

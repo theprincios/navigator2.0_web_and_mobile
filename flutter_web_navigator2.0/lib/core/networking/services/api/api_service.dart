@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_appointment_slot_model.dart';
+import 'package:es_2022_02_02_1/api_models/get/get_appointment_slot_type_model.dart';
 import 'package:es_2022_02_02_1/api_models/get/get_authorities_model.dart';
 import 'package:es_2022_02_02_1/api_models/get/get_helpDesk_model.dart';
 import 'package:es_2022_02_02_1/api_models/get/get_user_logged.dart';
@@ -145,6 +147,22 @@ class ApiService {
     }
   }
 
+  Future<dynamic> getHelpDeskListShort(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<dynamic>(
+        '$_baseUrl/v1/helpdesk/list',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return response.data;
+    } catch (e) {
+      log('ERRORE GET getHelpDeskListShort : ' + e.toString());
+      return null;
+    }
+  }
+
   Future<Tuple2<String?, int>> postHelpDesk(Map<String, dynamic> data,
       {Map<String, dynamic>? queryParameters}) async {
     try {
@@ -209,6 +227,228 @@ class ApiService {
       );
     } on DioError catch (e) {
       log('deleteHelpDeskById : ' + e.toString());
+      return null;
+    }
+  }
+
+  Future<Tuple2<int?, AppointmentSlotTypeList?>> getAppointmentSlotType(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<dynamic>(
+        '$_baseUrl/v1/appointmentslottype',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+      final AppointmentSlotTypeList data =
+          AppointmentSlotTypeList.fromJson(response.data);
+
+      return Tuple2(response.statusCode, data);
+    } on DioError catch (e) {
+      log('ERRORE getHelpDesk : ' + e.toString());
+      return Tuple2(e.response?.statusCode, null);
+    }
+  }
+
+  Future<dynamic> getAppointmentSlotTypeById(int helpDeskId,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<dynamic>(
+        '$_baseUrl/v1/appointmentslottype/$helpDeskId',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return response.data;
+    } catch (e) {
+      log('ERRORE getAppointmentSlotTypeById : ' + e.toString());
+      return null;
+    }
+  }
+
+  Future<Tuple2<String?, int>> postAppointmentSlotType(
+      Map<String, dynamic> data,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.post<dynamic>(
+        '$_baseUrl/v1/appointmentslottype',
+        data: data,
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return Tuple2<String, int>(
+          response.data.toString(), response.statusCode!);
+    } on DioError catch (e) {
+      if (e.response!.statusCode == 400) {
+        final errors = e.response!.data;
+
+        final Map<String, dynamic> errorsJson = errors;
+
+        final List<dynamic> error = errorsJson['errors'];
+
+        return Tuple2<String, int>(error.first, e.response!.statusCode!);
+      } else {
+        return Tuple2<String?, int>(null, e.response!.statusCode!);
+      }
+    }
+  }
+
+  Future<Tuple2<String?, int>> putAppointmentSlotType(
+      int helpDeskId, dynamic data,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.put<dynamic>(
+        '$_baseUrl/v1/appointmentslottype/$helpDeskId',
+        queryParameters: queryParameters,
+        options: _options,
+        data: data,
+      );
+
+      return Tuple2<String, int>(
+          response.data.toString(), response.statusCode!);
+    } on DioError catch (e) {
+      if (e.response!.statusCode == 400) {
+        final errors = e.response!.data;
+
+        final Map<String, dynamic> errorsJson = errors;
+
+        final List<dynamic> error = errorsJson['errors'];
+
+        return Tuple2<String, int>(error.first, e.response!.statusCode!);
+      } else {
+        return Tuple2<String?, int>(null, e.response!.statusCode!);
+      }
+    }
+  }
+
+  Future<dynamic> deleteAppointmentSlotType(int helpDeskId,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.delete<dynamic>(
+        '$_baseUrl/v1/appointmentslottype/$helpDeskId',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+    } on DioError catch (e) {
+      log('deleteAppointmentSlotType : ' + e.toString());
+      return null;
+    }
+  }
+
+  Future<Tuple2<int?, AppointmentSlotList?>> getAppointment(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<dynamic>(
+        '$_baseUrl/v1/appointmentslot',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+      final AppointmentSlotList? data =
+          AppointmentSlotList.fromJson(response.data);
+
+      return Tuple2(response.statusCode, data);
+    } on DioError catch (e) {
+      log('ERRORE getAppointment : ' + e.toString());
+      return Tuple2(e.response?.statusCode, null);
+    }
+  }
+
+  Future<dynamic> getAppointmentById(int id,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<Map<String, dynamic>>(
+        '$_baseUrl/v1/appointmentslot/$id',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return Map<String, dynamic>.from(response.data as Map);
+    } catch (e) {
+      log('ERRORE getAppointmentById : ' + e.toString());
+      return null;
+    }
+  }
+
+  Future<Tuple2<String?, int>> postAppointment(Map<String, dynamic> data,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.post<dynamic>(
+        '$_baseUrl/v1/appointmentslot',
+        data: data,
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return Tuple2<String, int>(
+          response.data.toString(), response.statusCode!);
+    } on DioError catch (e) {
+      if (e.response!.statusCode == 400) {
+        final errors = e.response!.data;
+
+        final Map<String, dynamic> errorsJson = errors;
+
+        final List<dynamic> error = errorsJson['errors'];
+
+        return Tuple2<String, int>(error.first, e.response!.statusCode!);
+      } else {
+        return Tuple2<String?, int>(null, e.response!.statusCode!);
+      }
+    }
+  }
+
+  Future<Tuple2<String?, int>> putAppointment(int id, dynamic data,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.put<dynamic>(
+        '$_baseUrl/v1/appointmentslot/$id',
+        queryParameters: queryParameters,
+        options: _options,
+        data: data,
+      );
+
+      return Tuple2<String, int>(
+          response.data.toString(), response.statusCode!);
+    } on DioError catch (e) {
+      if (e.response!.statusCode == 400) {
+        final errors = e.response!.data;
+
+        final Map<String, dynamic> errorsJson = errors;
+
+        final List<dynamic> error = errorsJson['errors'];
+
+        return Tuple2<String, int>(error.first, e.response!.statusCode!);
+      } else {
+        return Tuple2<String?, int>(null, e.response!.statusCode!);
+      }
+    }
+  }
+
+  Future<dynamic> deleteAppointment(int id,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.delete<dynamic>(
+        '$_baseUrl/v1/appointmentslot/$id',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+    } on DioError catch (e) {
+      log('deleteAppointment : ' + e.toString());
+      return null;
+    }
+  }
+
+  Future<dynamic> getAppointmentTypeListShort(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get<dynamic>(
+        '$_baseUrl/v1/appointmentslottype/list',
+        queryParameters: queryParameters,
+        options: _options,
+      );
+
+      return response.data;
+    } catch (e) {
+      log('ERRORE GET getAppointmentTypeListShort : ' + e.toString());
       return null;
     }
   }

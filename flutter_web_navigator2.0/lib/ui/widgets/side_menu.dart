@@ -65,7 +65,7 @@ class SideMenu extends StatelessWidget {
                   color: Colors.white,
                   size: 18,
                 ),
-                title: "Gestione Ticket",
+                title: "Gestione Slot",
                 svgSrc: "assets/icons/menu_dashbord.svg",
                 press: () async {
                   await Provider.of<MyRouterDelegate>(context, listen: false)
